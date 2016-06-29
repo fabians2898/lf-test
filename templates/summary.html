@@ -1,40 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Welcome to Lendingfront</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+{% extends "base.html" %}
 
-	<!-- jQuery library -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-	 <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">LENDINGFRONT</a>
-        </div>        
-      </div>
-    </nav>
-
+{% block content %}
     <div class="jumbotron">
       <div class="container">
-        <h3>RESULTS</h3>
-        {% if state == 'Declined'%}
-        <p>Sorry, your application was {{state}}</p>
-        {% end %}
-        {% if state == 'Aproved'%}
-        <p>Congratulations, your application was {{state}}</p>
-        {% end %}
-        {% if state == 'Undecided'%}
-        <p>Sorry, your application is still in process</p>
-        {% end %}
-        
+        <h3>Aplication summary</h3>
+        <table class="table table-bordered">
+			<tr>
+				<th>ID Application</th>
+				<th>Owner</th>
+				<th>Business</th>
+				<th>Status</th>
+			</tr>
+			<tr>
+				<td>5465466765-2</td>
+				<td>{{owner}}</td>
+				<td>{{business}}</td>
+				{% if state == 'Declined'%}
+		        <td class="text-danger">DECLINED</td>
+		        {% end %}
+		        {% if state == 'Aproved'%}
+		        <td class="text-success">APROVED</td>
+		        {% end %}
+		        {% if state == 'Undecided'%}
+		        <td class="text-warning">IN PROCESS</td>
+		        {% end %}				
+			</tr>
+		</table>		
       </div>
     </div>
-</body>
-</html>
+{% end %}
