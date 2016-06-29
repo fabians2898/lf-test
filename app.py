@@ -3,6 +3,7 @@ import tornado.web
 import tornado.httpserver
 
 import os.path
+import os.environ
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -60,7 +61,8 @@ application = tornado.web.Application([
 ],**settings)
 
 if __name__ == '__main__':
+	port = int(os.environ.get("PORT", 5000))
     print "server is running"
     http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(5000)    
+    http_server.listen(port)    
     tornado.ioloop.IOLoop.instance().start()
